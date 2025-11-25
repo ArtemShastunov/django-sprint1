@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>{% block title %}Блогикум{% endblock %}</title>
-    {% load static %}
+    <link rel="icon" href="{% static 'img/fav/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <a href="{% url 'blog:index' %}" class="logo">
-                <img src="{% static 'img/logo.png' %}" alt="Логотип Блогикум">
-                <span>Блогикум</span>
-            </a>
-            <nav class="nav">
-                <ul>
-                    <li><a href="{% url 'blog:index' %}">Лента записей</a></li>
-                    <li><a href="{% url 'pages:about' %}">О проекте</a></li>
-                    <li><a href="{% url 'pages:rules' %}">Наши правила</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="{% url 'blog:index' %}" class="logo">
+          <img src="{% static 'img/logo.png' %}" alt="Логотип Блогикум">
+          <span>Блогикум</span>
+        </a>
+        <nav class="nav">
+          <ul>
+            <li><a href="{% url 'blog:index' %}">Лента записей</a></li>
+            <li><a href="{% url 'pages:about' %}">О проекте</a></li>
+            <li><a href="{% url 'pages:rules' %}">Наши правила</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main class="main">
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; Блогикум</p>
-        </div>
+      <div class="container">
+        <p>&copy; Блогикум</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.http import Http404
+
 posts = [
     {
         'id': 0,
@@ -45,14 +47,18 @@ posts = [
 
 
 def index(request):
-    reversed_posts = posts[::-1]  # Инвертируем список
+    # Создаём копию списка и инвертируем его
+    reversed_posts = list(reversed(posts))
     return render(request, 'blog/index.html', {'posts': reversed_posts})
 
+# Словарь для быстрого доступа к постам по id
+posts_dict = {post['id']: post for post in posts}
 
-def post_detail(request, id):
-    post = next((p for p in posts if p['id'] == id), None)
+def post_detail(request, post_id):
+    # Используем словарь для O(1) доступа
+    post = posts_dict.get(post_id)
     if post is None:
-        post = {}
+        raise Http404("Пост не найден")
     return render(request, 'blog/detail.html', {'post': post})
 
 
