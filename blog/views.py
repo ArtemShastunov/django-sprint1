@@ -51,8 +51,10 @@ def index(request):
     reversed_posts = list(reversed(posts))
     return render(request, 'blog/index.html', {'posts': reversed_posts})
 
+
 # Словарь для быстрого доступа к постам по id
 posts_dict = {post['id']: post for post in posts}
+
 
 def post_detail(request, post_id):
     # Используем словарь для O(1) доступа
